@@ -1,0 +1,14 @@
+$baseFontSize: 16; 
+// font family
+$arial: 'arial', Helvetica, sans-serif;
+
+%arial {
+    font-family: $arial;
+}
+
+%arialBold {
+    font-family: 'arial-bold', $arial;
+}
+
+
+

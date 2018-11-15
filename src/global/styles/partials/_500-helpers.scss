@@ -1,0 +1,145 @@
+/* helper classes*/
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase !important;
+}
+
+.no-line-break {
+    hyphens: none;
+    white-space: nowrap;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hidden-xs {
+    @include bp('max', 'xs') {
+        display: none !important;
+    }
+}
+
+.hidden-lg {
+    @include bp('min', 'lg') {
+        display: none!important;
+    }
+}
+
+.hidden-xl {
+    @include bp('min', 'xl') {
+        display: none!important;
+    }
+}
+
+.visible-lg {
+    @include bp('max', 'md') {
+        display: none!important;
+    }
+}
+
+.visible-xs {
+    @include bp('min', 'sm') {
+        display: none !important;
+    }
+}
+
+.visible-xxs {
+    @include bp('min', 321px) {
+        display: none !important;
+    }
+}
+
+.visible-xl {
+    @include bp('max', 'xl') {
+        display: none !important;
+    }
+}
+
+.background-none {
+    background: none !important;
+}
+
+.background-transparent {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix {
+    @include clearfix;
+}
+
+.no-links {
+    pointer-events: none;
+    a {
+        text-decoration: none;
+        color: inherit!important;
+    }
+}
+
+.no-btn-styles {
+    appearance: none;
+    background: transparent;
+    border: none;
+}
+
+//image styles
+.image,
+%image {
+    @include image();
+}
+
+.sr-only,
+%sr-only {
+    @include sr-only();
+}
+
+//list
+%list-none,
+.list-none {
+    @include list-none();
+}
+
+// remove default styles on select dropdowns & add pointer
+.normalize-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.hide-m {
+    @include bp("max", "md") { 
+       display: none; 
+    }
+}
+
+.show-m {
+    @include bp('min', 'md') {
+        display: none;
+    }
+}
+
+.show-md {
+    @include bp('min', 'lg') {
+        display: none;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.image {
+    width: 100%;
+}

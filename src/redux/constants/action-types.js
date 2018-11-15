@@ -1,0 +1,2 @@
+export const SET_MENU_STATE = 'SET_MENU_STATE';
+export const SET_OVERLAY_STATE = 'SET_OVERLAY_STATE';
