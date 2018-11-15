@@ -7,7 +7,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>
-            hi there
+            hi there on heroku
           </p>
         </header>
       </div>
