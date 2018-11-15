@@ -1,0 +1,84 @@
+@import 'global/styles/utils.scss';
+
+.top-nav-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: $white;
+    z-index: 20;
+    transform: translateX(-100%);
+    opacity: 0;
+
+    @media screen and (min-width: 768px) { 
+        width: 428px;
+    }
+
+    @media screen and (min-width: 1440px) { 
+        width: 542px;
+    }
+
+    &__close {
+        display: block;
+        width: 35px;
+        height: 35px;
+        padding: 10px;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        
+        @media screen and (min-width: 1024px) {
+            right: 97px;
+            top: 27px;
+        }
+        &:after {
+            @extend %arial;
+            position: absolute;
+            left: 30px;
+            top: 0px;
+            padding-top: 2px;
+            line-height: 33px;
+            font-size: 18px;
+            color: $black;
+            @media screen and (min-width: 1024px) {
+                content: 'CLOSE';
+            }
+        }
+    }
+
+    &__list {
+        @extend %arial;
+        padding-top: 35px;
+        padding-left: 0;
+        list-style-type: none;
+        @media screen and (min-width: 1024px) {
+            padding-top: 75px;
+        }
+    }
+
+    &__link {
+        display: block;
+        padding: 20px 0 20px 34px;
+        text-decoration: none;
+        color: $black;
+        font-size: 17px;
+        text-align: left;
+
+        @media screen and (min-width: 1024px) {
+            padding: 16px 0 15px 45px;
+        }
+
+        &--active,
+        &:hover {
+            font-weight: bold;
+            background: #efefef;
+        }
+    }
+
+    &__image {
+        display: block;
+        width: 15px;
+    }
+
+}

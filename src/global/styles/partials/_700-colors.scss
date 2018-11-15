@@ -1,18 +1,17 @@
-@each $color,
-$name in ($blue, 'blue'),
-($darkBlue, 'dark-blue'),
-($green, 'green'),
-($green2, 'green-2'),
-($purple, 'purple'),
-($white, 'white'),
-($darkGrey, 'dark-grey'),
-($mediumGrey, 'medium-grey'),
-($white, 'white'),
-($grey, 'grey') {
-    .#{$name} {
-        color: #{$color};
-    }
-    .bg-#{$name} {
-        background: #{$color};
-    }
-}
+// @each $color,
+// $name in ($darkBlue, 'dark-blue'),
+// ($green, 'green'),
+// ($green2, 'green-2'),
+// ($purple, 'purple'),
+// ($white, 'white'),
+// ($darkGrey, 'dark-grey'),
+// ($mediumGrey, 'medium-grey'),
+// ($white, 'white'),
+// ($grey, 'grey') {
+//     .#{$name} {
+//         color: #{$color};
+//     }
+//     .bg-#{$name} {
+//         background: #{$color};
+//     }
+// }

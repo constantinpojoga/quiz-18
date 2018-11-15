@@ -47,18 +47,6 @@
     border: none;
 }
 
-//image styles
-.image,
-%image {
-    @include image();
-}
-
-//list
-%list-none,
-.list-none {
-    @include list-none();
-}
-
 // remove default styles on select dropdowns & add pointer
 .normalize-select {
     -webkit-appearance: none;
