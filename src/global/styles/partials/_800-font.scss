@@ -22,72 +22,19 @@
 	@extend %arial;
 	font-size: 16px;
 	line-height: 1.25;
-	@include bp("min", "md") { 
-		font-size: 18px;
-		line-height: 25px;
-	}
 }
 
 .heading-1 {
 	@extend %georgia;
 	font-size: 23px;
 	line-height: 30px;
-	@include bp("min", "md") { 
-		font-size: 46px;
-		line-height: 55px;
-	}
-	@include bp("min", "lg") { 
-		font-size: 55px;
-		line-height: 67px;
-	}
-	@include bp("min", "xl") { 
-		font-size: 60px;
-		line-height: 70px;
-	}
 }
 
-.heading-2 {
-	@extend %georgia;
-	font-size: 24px;
-	line-height: 30px;
-
-	@include bp("min", "md") { 
-		font-size: 40px;
-		line-height: 45px;
-	}
-	@include bp("min", "lg") { 
-		font-size: 45px;
-		line-height: 57px;
-	}
-	@include bp("min", "xl") { 
-		font-size: 50px;
-		line-height: 65px;
-	}
-}
 
 .body-1 {
 	@extend %arial;
 	font-size: 14px;
 	line-height: 17px;
-
-	@include bp("min", "md") { 
-		font-size: 16px;
-		line-height: 20px;
-	}
-	@include bp("min", "lg") { 
-		font-size: 18px;
-		line-height: 24px;
-	}
-
-	p {
-		margin-bottom: 16px;
-		@include bp("min", "md") { 
-            margin-bottom: 20px;
-        }
-        @include bp("min", "lg") { 
-            margin-bottom: 23px;
-        }
-    }
 }
 
 
