@@ -6,17 +6,20 @@
     top: 0;
     width: 100%;
     height: 100vh;
-    background: $white;
     z-index: 20;
     transform: translateX(-100%);
     opacity: 0;
 
+    background: url(https://res.cloudinary.com/costik/image/upload/v1542332451/hero) $darkGray no-repeat;
+    background-size: 220px;
+    background-position: center 300px;
+
     @media screen and (min-width: 768px) { 
-        width: 428px;
+        width: 350px;
     }
 
     @media screen and (min-width: 1440px) { 
-        width: 542px;
+        width: 400px;
     }
 
     &__close {
@@ -40,7 +43,7 @@
             padding-top: 2px;
             line-height: 33px;
             font-size: 18px;
-            color: $black;
+            color: $red;
             @media screen and (min-width: 1024px) {
                 content: 'CLOSE';
             }
@@ -49,7 +52,7 @@
 
     &__list {
         @extend %arial;
-        padding-top: 35px;
+        padding-top: 55px;
         padding-left: 0;
         list-style-type: none;
         @media screen and (min-width: 1024px) {
@@ -61,9 +64,13 @@
         display: block;
         padding: 20px 0 20px 34px;
         text-decoration: none;
-        color: $black;
+        color: $red;
         font-size: 17px;
         text-align: left;
+        transition: background-color 0.3s;
+        background-color: lighten($darkGray, 5%);
+        border-bottom: 1px solid $darkGray;
+
 
         @media screen and (min-width: 1024px) {
             padding: 16px 0 15px 45px;
@@ -72,7 +79,7 @@
         &--active,
         &:hover {
             font-weight: bold;
-            background: #efefef;
+            background-color: lighten($darkGray, 15%);
         }
     }
 
