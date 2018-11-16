@@ -10,28 +10,17 @@
 
     &__link {
         @extend %arial;
+        position: relative;
+        display: inline-block;
+        padding: 0 24px;
+        background-color: darken($red, 10%);
+        border-radius: 3px;
         font-weight: bold;
         font-size: 16px;
+        line-height: 45px;
         color: $white;
         text-transform: uppercase;
         text-decoration: none;
-        background-color: darken($red, 10%);
-        
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        height: 80px;
-        line-height: 80px;
-        width: 100%;
-        @media screen and (min-width: 768px) {
-            position: relative;
-            display: inline-block;
-            padding: 0 24px;
-            border-radius: 3px;
-            height: auto;
-            line-height: 45px;
-            width: auto;
-        }
 
         &:hover {
             background-color: darken($red, 20%);
