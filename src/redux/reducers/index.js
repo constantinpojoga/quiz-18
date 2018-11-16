@@ -7,6 +7,7 @@ import {
 const initialState = {
     menuIsOpen: false,
     overlayIsActive: false,
+    formIsSubmitted: false
 };
 
 const rootReducer = (state = initialState, action) => {
