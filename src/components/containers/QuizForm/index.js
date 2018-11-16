@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import './quiz-form.scss';
 import questions from 'model/questions.json';
 import QuizOption from '../../presentational/QuizOption';
+// Functions
+import { updateFormState, updateAnswers } from 'redux/actions';
 
 const mapStateToProps = state => {
     return {
@@ -15,9 +17,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // setVolume: (val) => dispatch(setVolume(val)),
-        // setMenuState: (val) => dispatch(setMenuState(val)),
-        // setOverlayState: (val) => dispatch(setOverlayState(val))
+        updateFormState: (val) => dispatch(updateFormState(val)),
+        updateAnswers: (arr) => dispatch(updateAnswers(arr)),
     };
 };
 
@@ -27,19 +28,51 @@ class ConnectedQuizForm extends Component {
         this.form = React.createRef();
 
         this.state = {
-            
+            quizAnswers: []
         }
+        // Bindings
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        console.log('submit')
-
+        console.log(this.state.quizAnswers.sort((a, b) => a.id < b.id))
+        if (this.checkIfFormIsValid()) {
+            this.props.updateFormState(true);
+            this.props.updateAnswers(this.state.quizAnswers.sort((a, b) => a.id < b.id))
+        } else {
+            event.preventDefault();
+            this.showErrors()
+        }
     } 
 
+    showErrors() {
+        console.log('not valid yet')
+    }
+
+    handleChange(event) {
+        const radio = event.target;
+        this.setState({
+            quizAnswers: [
+                ...this.state.quizAnswers.filter(el => el.id !== parseInt(radio.dataset.id)), 
+                {
+                    id: parseInt(radio.dataset.id),
+                    answer: parseInt(radio.value)
+                }
+            ]
+        });
+        setTimeout(() => {
+            console.log(this.state.quizAnswers);
+        }, 100);
+    }
+
+    checkIfFormIsValid() {
+        return this.state.quizAnswers.length === questions.length
+    }
+
     componentDidMount() {
-        console.log(this.form.current)
+        console.log('animation here')
     }
 
     render() {
@@ -53,11 +86,12 @@ class ConnectedQuizForm extends Component {
                             question={item.question} 
                             answer1={item.answers[0]}
                             answer2={item.answers[1]}
+                            onChange={this.handleChange}
                         />
                     )
                 })}
 
-                <div className="quiz-form__error">Please select an option for each question</div>
+                <div className="quiz-form__error">Please answer all questions</div>
 
                 <div className="quiz-form__submit">
                     <button  className="quiz-form__submit-btn" type="submit">Submit</button>

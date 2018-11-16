@@ -1,16 +1,16 @@
 import { 
     SET_MENU_STATE,
     SET_OVERLAY_STATE,
+    UPDATE_ANSWERS,
+    UPDATE_FORM_STATE,
 
 } from "../constants/action-types";
 
 const initialState = {
     menuIsOpen: false,
     overlayIsActive: false,
-    formIsSubmitted: true,
-    formIsInvalid: false,
-    invalidFormItems: [],
-    quizAnswers: [1, 2, 1, 1, 2, 2]
+    formIsSubmitted: false,
+    quizAnswers: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,6 +25,14 @@ const rootReducer = (state = initialState, action) => {
             return { ...state,
                 overlayIsActive: action.overlayIsActive
             };
+        case UPDATE_ANSWERS:
+            return { ...state,
+                quizAnswers: action.quizAnswers
+            };
+        case UPDATE_FORM_STATE:
+            return { ...state,
+                formIsSubmitted: action.isSubmitted
+            }
         default:
             return state;
     }

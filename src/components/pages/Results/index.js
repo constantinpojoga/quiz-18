@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // Files
 import './results.scss';
 import questions from 'model/questions.json';
-import { parse } from 'url';
+// Functions
 
 const mapStateToProps = state => {
     return {
@@ -16,15 +16,10 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        // setSectionAsAnimated: (val) => dispatch(setSectionAsAnimated(val)),
-    };
-};
-
 class ConnectedResults extends Component {
     componentDidMount() {
         this.score = this.checkScore();
+        console.log(this.props)
     }
 
     checkScore() {
@@ -73,6 +68,11 @@ class ConnectedResults extends Component {
     }
 }
 
-const Results = connect(mapStateToProps, mapDispatchToProps)(ConnectedResults);
+const Results = connect(mapStateToProps)(ConnectedResults);
+
+Results.propTypes = {
+    formIsSubmitted: PropTypes.bool.isRequired,
+    quizAnswers: PropTypes.array.isRequired,
+}
 
 export default Results;
