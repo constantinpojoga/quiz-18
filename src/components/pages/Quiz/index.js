@@ -12,7 +12,7 @@ class Quiz extends Component {
                 <div className="container">
                     <h1 className="quiz__heading heading-1">Please answer all this {quiz.numOfQuestions} short questions:</h1>
 
-                    <p className="quiz__text">Please chose one option for each question:</p>
+                    <p className="quiz__text text-center">(One option for each question)</p>
 
                     <QuizForm />
                 </div>

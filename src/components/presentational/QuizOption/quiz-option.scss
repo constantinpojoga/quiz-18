@@ -3,10 +3,9 @@
 
 .quiz-option {
     padding: 10px;
-    border: 1px solid $darkGray;
     margin-bottom: 10px;
-    background: #efefef;
-    box-shadow: 1px 1px 1px gray;
+    background: lightgray;
+    box-shadow: 2px 2px 3px $darkGray;
 
     @media screen and (min-width: 768px) {
         margin-bottom: 15px;

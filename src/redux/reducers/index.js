@@ -7,7 +7,10 @@ import {
 const initialState = {
     menuIsOpen: false,
     overlayIsActive: false,
-    formIsSubmitted: false
+    formIsSubmitted: true,
+    formIsInvalid: false,
+    invalidFormItems: [],
+    quizAnswers: [1, 2, 1, 1, 2, 2]
 };
 
 const rootReducer = (state = initialState, action) => {

@@ -1,0 +1,48 @@
+@import 'global/styles/utils.scss';
+
+.result-item {
+    margin-bottom: 10px;
+    font-size: 14px;
+    background: lightgray;
+    box-shadow: 2px 2px 3px $darkGray;
+    padding: 10px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+
+    &__question {
+        font-size: 16px;
+        font-weight: bold;
+
+        @media screen and (min-width: 768px) {
+            font-size: 18px;
+        }
+    }
+
+    &__answers {
+        display: flex;
+    }
+
+    &__answer {
+        margin-right: 10px;
+        font-weight: bold;
+
+        &--valid {
+            color: $green;
+        }
+
+        &--invalid {
+            color: $red;
+        }
+    }
+
+    &__complexity {
+        font-size: 12px;
+        @media screen and (min-width: 768px) {
+            font-size: 14px;
+        }
+    }
+}
