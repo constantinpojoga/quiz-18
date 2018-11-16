@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import Header from 'components/containers/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import MetaTags from 'react-meta-tags';
+// Components
 import Homepage from 'components/pages/Homepage';
 import Quiz from 'components/pages/Quiz';
 import Results from 'components/pages/Results';
+// Files
 import 'global/styles/base.scss';
+import quiz from 'model/quiz.json';
 
 const mapStateToProps = state => {
     return {
@@ -22,6 +26,11 @@ class ConnectedApp extends Component {
         return (
             <Router>
                 <div>
+                <MetaTags>
+                    <title>{quiz.title}</title>
+                    <meta name="description" content={quiz.description} />
+                    <meta name="keywords" content={quiz.keywords.join(', ')} />
+                </MetaTags>
                     <Header / >
 
                     <main className="main">
