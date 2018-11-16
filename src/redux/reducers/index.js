@@ -31,7 +31,7 @@ const rootReducer = (state = initialState, action) => {
             };
         case UPDATE_FORM_STATE:
             return { ...state,
-                formIsSubmitted: action.isSubmitted
+                formIsSubmitted: action.formIsSubmitted
             }
         default:
             return state;

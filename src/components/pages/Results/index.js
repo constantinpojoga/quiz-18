@@ -71,8 +71,8 @@ class ConnectedResults extends Component {
 const Results = connect(mapStateToProps)(ConnectedResults);
 
 Results.propTypes = {
-    formIsSubmitted: PropTypes.bool.isRequired,
-    quizAnswers: PropTypes.array.isRequired,
+    formIsSubmitted: PropTypes.bool,
+    quizAnswers: PropTypes.array,
 }
 
 export default Results;

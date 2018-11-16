@@ -33,16 +33,23 @@ class ConnectedQuizForm extends Component {
         // Bindings
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+    }
+
+    componentWillMount() {
+        console.log(this.props)
+        this.props.updateFormState(true)
     }
 
     handleSubmit(event) {
-        console.log(this.state.quizAnswers.sort((a, b) => a.id < b.id))
+        event.preventDefault();
+
         if (this.checkIfFormIsValid()) {
             this.props.updateFormState(true);
-            this.props.updateAnswers(this.state.quizAnswers.sort((a, b) => a.id < b.id))
+            this.props.updateAnswers(this.state.quizAnswers.sort((a, b) => a.id < b.id));
+            
+            // return <Redirect to='/results'/>
         } else {
-            event.preventDefault();
+            
             this.showErrors()
         }
     } 
