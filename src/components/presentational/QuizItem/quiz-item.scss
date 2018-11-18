@@ -1,0 +1,121 @@
+
+@import 'global/styles/utils.scss';
+
+.quiz-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 3px $darkGray;
+    position: relative;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 15px;
+    }
+
+    &__eyebrow {
+        font-size: 14;
+        line-height: 1.3;
+        color: $red;
+        display: block;
+        border-bottom: 1px solid #000;
+
+        @media screen and (min-width: 768px) {
+            font-size: 18px;
+        }
+    }
+    &__question {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 14;
+        line-height: 1.3;
+        font-weight: bold;
+
+        @media screen and (min-width: 768px) {
+            font-size: 18px;
+        }
+    }
+
+    &__answers {
+        padding: 0;
+        margin: 0;
+
+        @media screen and (min-width: 768px) {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+
+    &__answer,
+    &__continue,
+    &__view-results {
+        display: block;
+        border: 2px solid $darkGray;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+        line-height: 60px;
+        cursor: pointer;
+
+        @media screen and (min-width: 768px) {
+            flex: 0 1 250px;
+            line-height: 120px;
+        }
+    }
+
+    &__answer {
+        background-color: lightgray;
+        &:hover {
+            background-color: darken(lightgray, 10%);
+        }
+        .quiz-item--has-response &:hover {
+            background-color: lightgray;
+        }
+
+        &.valid {
+            border-color: $green;
+            color: $green;
+        }
+        &.invalid {
+            border-color: $red;
+            color: $red;
+        }
+    }
+
+    &__continue,
+    &__view-results {
+        width: 100%;
+        background-color: $blue;
+        position: absolute;
+        z-index: 20;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 50px;
+        color: $white;
+        line-height: 65px;
+        &:hover {
+            background-color: darken($blue, 10%);
+        }
+    
+        @media screen and (min-width: 768px) {
+            width: 250px;
+            bottom: 37px;
+        }
+    }
+
+    &__view-results {
+        background-color: $green !important;
+        text-decoration: none;
+    }
+
+    &__overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 9, 0.5);
+        z-index: 10;
+        pointer-events: none;
+    }
+}

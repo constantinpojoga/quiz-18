@@ -4,21 +4,20 @@ import PropTypes from 'prop-types';
 
 // Files
 import './quiz-form.scss';
-import questions from 'model/questions.json';
-import QuizOption from '../../presentational/QuizOption';
+import QuizItem from 'components/presentational/QuizItem'
 // Functions
-import { updateFormState, updateAnswers } from 'redux/actions';
+import { setActiveItem, setItemResponse } from 'redux/actions';
 
-const mapStateToProps = state => {
-    return {
-        formIsSubmitted: state.formIsSubmitted
-    }
-}
+const mapStateToProps = state => ({
+    activeQuizItem: state.activeQuizItem,
+    quizItems: state.quizItems,
+    menuIsOpen: state.menuIsOpen,
+});
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateFormState: (val) => dispatch(updateFormState(val)),
-        updateAnswers: (arr) => dispatch(updateAnswers(arr)),
+        setActiveItem: (val) => dispatch(setActiveItem(val)),
+        setItemResponse: (itemId, itemResponse) => dispatch(setItemResponse(itemId, itemResponse))
     };
 };
 
@@ -27,91 +26,61 @@ class ConnectedQuizForm extends Component {
         super(props);
         this.form = React.createRef();
 
-        this.state = {
-            quizAnswers: []
+        this.settings = {
+            validAnswerModifier: 'valid',
+            invalidAnswerModifier: 'invalid'
         }
         // Bindings
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleContinue = this.handleContinue.bind(this);
     }
 
-    componentWillMount() {
-        console.log(this.props)
-        this.props.updateFormState(true)
-    }
+    handleClick(event) {
+        const element = event.target;
+        const elementId = parseInt(element.dataset.id);
+        const itemResponse = parseInt(element.dataset.answer)
 
-    handleSubmit(event) {
-        event.preventDefault();
+        this.props.setItemResponse(elementId, itemResponse);
 
-        if (this.checkIfFormIsValid()) {
-            this.props.updateFormState(true);
-            this.props.updateAnswers(this.state.quizAnswers.sort((a, b) => a.id < b.id));
-            
-            // return <Redirect to='/results'/>
+        if (this.props.activeQuizItem < this.props.quizItems.length) {
+            console.log('go to next')
         } else {
-            
-            this.showErrors()
+            console.log('go to results')
         }
-    } 
-
-    showErrors() {
-        console.log('not valid yet')
     }
 
-    handleChange(event) {
-        const radio = event.target;
-        this.setState({
-            quizAnswers: [
-                ...this.state.quizAnswers.filter(el => el.id !== parseInt(radio.dataset.id)), 
-                {
-                    id: parseInt(radio.dataset.id),
-                    answer: parseInt(radio.value)
-                }
-            ]
-        });
-        setTimeout(() => {
-            console.log(this.state.quizAnswers);
-        }, 100);
-    }
-
-    checkIfFormIsValid() {
-        return this.state.quizAnswers.length === questions.length
-    }
-
-    componentDidMount() {
-        console.log('animation here')
+    handleContinue() {
+        this.props.setActiveItem(this.props.activeQuizItem + 1);
     }
 
     render() {
-        return (
-            <form action="/results" className="quiz-form" ref={this.form} onSubmit={this.handleSubmit}>
-                {questions.map((item, id) => {
-                    return ( 
-                        <QuizOption 
-                            key={id}
-                            id={id}
-                            question={item.question} 
-                            answer1={item.answers[0]}
-                            answer2={item.answers[1]}
-                            onChange={this.handleChange}
+        if (this.props.quizItems) {
+            return (
+                <div>
+                    <QuizItem 
+                            question={this.props.quizItems[this.props.activeQuizItem].question}
+                            id={this.props.quizItems[this.props.activeQuizItem].id}
+                            answers={this.props.quizItems[this.props.activeQuizItem].answers}
+                            handleClick={this.handleClick}
+                            handleContinue={this.handleContinue}
+                            numberOfQuestions={this.props.quizItems.length}
+                            itemHasResponse={this.props.quizItems[this.props.activeQuizItem].itemHasResponse}
+                            itemResponse={this.props.quizItems[this.props.activeQuizItem].itemResponse}
+                            correct={this.props.quizItems[this.props.activeQuizItem].correct}
                         />
-                    )
-                })}
-
-                <div className="quiz-form__error">Please answer all questions</div>
-
-                <div className="quiz-form__submit">
-                    <button  className="quiz-form__submit-btn" type="submit">Submit</button>
                 </div>
-            </form>
-        )
+            )
+        } else {
+            return <div>Loading...</div>
+        }
     }
 }
 
 const QuizForm = connect(mapStateToProps, mapDispatchToProps)(ConnectedQuizForm);
 
 QuizForm.propTypes = {
-    formIsSubmitted: PropTypes.bool,
+    quizItems: PropTypes.array,
+    activeQuizItem: PropTypes.number
 }
 
 export default QuizForm

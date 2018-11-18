@@ -9,12 +9,11 @@ import './results.scss';
 import questions from 'model/questions.json';
 // Functions
 
-const mapStateToProps = state => {
-    return {
-        formIsSubmitted: state.formIsSubmitted,
-        quizAnswers: state.quizAnswers
-    }
-}
+const mapStateToProps = state => ({
+    formIsSubmitted: state.formIsSubmitted,
+    quizAnswers: state.quizAnswers,
+});
+    
 
 class ConnectedResults extends Component {
     componentDidMount() {

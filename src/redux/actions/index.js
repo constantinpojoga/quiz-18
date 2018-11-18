@@ -1,14 +1,18 @@
 import { 
     SET_MENU_STATE,
     SET_OVERLAY_STATE,
-    UPDATE_ANSWERS,
-    UPDATE_FORM_STATE,
+    INIT_QUIZ_ITEMS,
+    SET_ACTIVE_ITEM,
+    SET_ITEM_RESPONSE,
 } from "../constants/action-types";
 
 export const setMenuState = (menuIsOpen) => ({ type: SET_MENU_STATE, menuIsOpen });
 
 export const setOverlayState = (overlayIsActive) => ({ type: SET_OVERLAY_STATE, overlayIsActive });
 
-export const updateAnswers = (quizAnswers) => ({ type: UPDATE_ANSWERS, quizAnswers});
+export const initQuizItems = (quizItems) => ({ type: INIT_QUIZ_ITEMS, quizItems });
 
-export const updateFormState = (formIsSubmitted) => ({ type: UPDATE_FORM_STATE, formIsSubmitted })
+export const setActiveItem = (activeQuizItem) => ({ type: SET_ACTIVE_ITEM, activeQuizItem });
+
+export const setItemResponse = (itemId, itemResponse) => ({ type: SET_ITEM_RESPONSE, itemId, itemResponse });
+ 
