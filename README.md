@@ -12,6 +12,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+## If you need to add new environment variables:
+In the root directory create one of this files:
+`.env.local`, `.env.development.local`, `.env.test.local` or `.env.production.local`, depending on your local environment.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
