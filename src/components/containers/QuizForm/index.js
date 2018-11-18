@@ -11,7 +11,6 @@ import { setActiveItem, setItemResponse } from 'redux/actions';
 const mapStateToProps = state => ({
     activeQuizItem: state.activeQuizItem,
     quizItems: state.quizItems,
-    menuIsOpen: state.menuIsOpen,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -24,7 +23,6 @@ const mapDispatchToProps = dispatch => {
 class ConnectedQuizForm extends Component {
     constructor(props) {
         super(props);
-        this.form = React.createRef();
 
         this.settings = {
             validAnswerModifier: 'valid',
@@ -41,12 +39,6 @@ class ConnectedQuizForm extends Component {
         const itemResponse = parseInt(element.dataset.answer)
 
         this.props.setItemResponse(elementId, itemResponse);
-
-        if (this.props.activeQuizItem < this.props.quizItems.length) {
-            console.log('go to next')
-        } else {
-            console.log('go to results')
-        }
     }
 
     handleContinue() {
@@ -56,20 +48,18 @@ class ConnectedQuizForm extends Component {
     render() {
         if (this.props.quizItems) {
             return (
-                <div>
-                    <QuizItem 
-                            question={this.props.quizItems[this.props.activeQuizItem].question}
-                            id={this.props.quizItems[this.props.activeQuizItem].id}
-                            answers={this.props.quizItems[this.props.activeQuizItem].answers}
-                            handleClick={this.handleClick}
-                            handleContinue={this.handleContinue}
-                            numberOfQuestions={this.props.quizItems.length}
-                            itemHasResponse={this.props.quizItems[this.props.activeQuizItem].itemHasResponse}
-                            itemResponse={this.props.quizItems[this.props.activeQuizItem].itemResponse}
-                            correct={this.props.quizItems[this.props.activeQuizItem].correct}
-                        />
-                </div>
-            )
+                <QuizItem 
+                    question={this.props.quizItems[this.props.activeQuizItem].question}
+                    id={this.props.quizItems[this.props.activeQuizItem].id}
+                    answers={this.props.quizItems[this.props.activeQuizItem].answers}
+                    handleClick={this.handleClick}
+                    handleContinue={this.handleContinue}
+                    numberOfQuestions={this.props.quizItems.length}
+                    itemHasResponse={this.props.quizItems[this.props.activeQuizItem].itemHasResponse}
+                    itemResponse={this.props.quizItems[this.props.activeQuizItem].itemResponse}
+                    correct={this.props.quizItems[this.props.activeQuizItem].correct}
+                />
+            )            
         } else {
             return <div>Loading...</div>
         }

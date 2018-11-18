@@ -6,64 +6,68 @@ import ResultItem from 'components/presentational/ResultItem';
 import { Link } from 'react-router-dom';
 // Files
 import './results.scss';
-import questions from 'model/questions.json';
 // Functions
 
 const mapStateToProps = state => ({
-    formIsSubmitted: state.formIsSubmitted,
-    quizAnswers: state.quizAnswers,
+    quizItems: state.quizItems,
 });
     
 
 class ConnectedResults extends Component {
-    componentDidMount() {
-        this.score = this.checkScore();
-        console.log(this.props)
+
+    checkIfFormIsComplete() {
+        this.numberOfQuestions = this.props.quizItems.length;
+        this.completedItems = this.props.quizItems.filter(el => el.itemResponse).length;
+        this.formIsComplete = this.completedItems === this.numberOfQuestions;
     }
 
     checkScore() {
-
+        this.correctAnswers = this.props.quizItems.filter(el => el.itemResponse === el.correct).length;
     }
 
     render() {
-        if (this.props.formIsSubmitted && this.props.quizAnswers.length === questions.length ) {
-            return (
-                <div className="results">
+        if (this.props.quizItems ) {
+            this.checkIfFormIsComplete();
+            
+            if (this.formIsComplete) {
+                return (
                     <div className="container">
-                        <h1 className="results__heading heading-1">Your results for the quiz:</h1>
+                        <div className="results">
+                            <h1 className="results__heading heading-1">Your results for the quiz:</h1>
 
-                        {questions.map( (item, id) => (
-                            <ResultItem 
-                                id={id} 
-                                key={id}
-                                question={item.question}
-                                answer={item.answers[parseInt(this.props.quizAnswers[id]) - 1]}
-                                correctAnswer={item.answers[parseInt(item.correct) - 1]}
-                                answerIsValid={item.answers[parseInt(this.props.quizAnswers[id]) - 1] === item.answers[parseInt(item.correct) - 1]}
-                                explanation={item.explanation}
-                                complexity={item.level}
-                            />
-                        ))}
+                            {this.props.quizItems.map( (item, id) => (
+                                <ResultItem 
+                                    id={item.id} 
+                                    key={id}
+                                    question={item.question}
+                                    answer={item.answers[item.itemResponse - 1]}
+                                    answerIsValid={item.itemResponse === item.correct}
+                                    explanation={item.explanation}
+                                    complexity={item.level}
+                                />
+                            ))}
 
-                        <div className="results__score">
-                            Your total score is 5 from {questions.length}
+                            <div className="results__score">
+                                Your total score is {this.correctAnswers} from {this.numberOfQuestions }
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
-            )
-        } else {
-            return (
+                )
+            } 
+        } 
+        
+        // Default action
+        return (
+            <div className="container">
                 <div className="results">
-                    <div className="container">
-                        <h1 className="results__heading heading-1">You need to answer all questions first</h1>
+                    <h1 className="results__heading heading-1">You need to answer all quiz answers:</h1>
 
-                        <p className="results__text">Please follow this <Link to="/quiz">link</Link> or use the menu to go to the quiz page.</p>
+                    <p className="results__text">Please follow this <Link to="/quiz">link</Link> or use the menu to go to the quiz page to finish the quiz.</p>
 
-                    </div>
                 </div>
-            )
-        }
+            </div>
+        )
     }
 }
 

@@ -9,6 +9,11 @@ import questions from 'model/questions.json';
 // Functions
 import { initQuizItems, setActiveItem } from 'redux/actions';
 
+const mapStateToProps = state => ({
+    activeQuizItem: state.activeQuizItem,
+    quizItems: state.quizItems,
+});
+
 const mapDispatchToProps = dispatch => {
     return {
         initQuizItems: (val) => dispatch(initQuizItems(val)),
@@ -31,7 +36,7 @@ class ConnectedQuiz extends Component {
     }
 
     componentDidMount() {
-        this.props.initQuizItems(this.questions);
+        if (!this.props.quizItems) this.props.initQuizItems(this.questions);
     }
 
     render() {
@@ -45,6 +50,6 @@ class ConnectedQuiz extends Component {
     }
 }
 
-const Quiz = connect(null, mapDispatchToProps)(ConnectedQuiz);
+const Quiz = connect(mapStateToProps, mapDispatchToProps)(ConnectedQuiz);
 
 export default Quiz;
