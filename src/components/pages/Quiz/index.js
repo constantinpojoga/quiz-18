@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => {
         setActiveItem: (val) => dispatch(setActiveItem(val)),
     };
 };
+
 class ConnectedQuiz extends Component {
     constructor() {
         super();
@@ -31,7 +32,6 @@ class ConnectedQuiz extends Component {
 
     componentDidMount() {
         this.props.initQuizItems(this.questions);
-        this.props.setActiveItem(0);
     }
 
     render() {

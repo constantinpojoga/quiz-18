@@ -9,6 +9,7 @@ import {
 const initialState = {
     menuIsOpen: false,
     overlayIsActive: false,
+    activeQuizItem: 0
 };
 
 const rootReducer = (state = initialState, action) => {
