@@ -25,6 +25,14 @@ You will also see any lint errors in the console.
 In the root directory create one of this files:
 `.env.local`, `.env.development.local`, `.env.test.local` or `.env.production.local`, depending on your local environment.
 
+## Other Info:
+I created this app with 3 pages because of initial requirements:
+
+``` A sample user flow could be (but not limited to, get creative!):
+1. Introduction page
+2. Question/answer page(s) for each quiz question
+3. Results page ```
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
