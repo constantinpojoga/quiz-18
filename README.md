@@ -27,10 +27,10 @@ In the root directory create one of this files:
 ## Other Info:
 I created this app with 3 pages because of initial requirements:
 
-``` A sample user flow could be (but not limited to, get creative!):
+A sample user flow could be (but not limited to, get creative!):
 1. Introduction page
 2. Question/answer page(s) for each quiz question
-3. Results page ```
+3. Results page
 
 ### `npm test`
 
