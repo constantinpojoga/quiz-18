@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TweenLite } from 'gsap';
 import { ANIMATION_DURATION } from 'global/constants'
-import './overlay.scss';
+import './Overlay.scss';
 
 class TopNavOverlay extends Component {
     constructor(props) {

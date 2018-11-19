@@ -1,7 +1,7 @@
 import React, { Component}  from 'react';
 import TopNav from 'components/containers/TopNav';
 import logo from './marvel-logo.png';
-import "./header.scss";
+import "./Header.scss";
 
 export default class Header extends Component {
 
