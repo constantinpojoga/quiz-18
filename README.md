@@ -4,7 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 ### `yarn`
-### `yarn start`
+
+Make sure that you have `NODE_PATH=src/` in the `.env` file. If you don't have that, please create the `.env.development.local` and add the same variable.
+
+## To start the project run:
+### `yarn start` 
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

@@ -10,19 +10,16 @@ import './results.scss';
 
 const mapStateToProps = state => ({
     quizItems: state.quizItems,
+    maxScore: state.maxScore,
+    yourScore: state.yourScore
 });
     
-
 class ConnectedResults extends Component {
 
     checkIfFormIsComplete() {
         this.numberOfQuestions = this.props.quizItems.length;
         this.completedItems = this.props.quizItems.filter(el => el.itemResponse).length;
         this.formIsComplete = this.completedItems === this.numberOfQuestions;
-    }
-
-    checkScore() {
-        this.correctAnswers = this.props.quizItems.filter(el => el.itemResponse === el.correct).length;
     }
 
     render() {
@@ -61,7 +58,7 @@ class ConnectedResults extends Component {
         return (
             <div className="container">
                 <div className="results">
-                    <h1 className="results__heading heading-1">You need to answer all quiz answers:</h1>
+                    <h1 className="results__heading heading-1">You need to answer all quiz questions:</h1>
 
                     <p className="results__text">Please follow this <Link to="/quiz">link</Link> or use the menu to go to the quiz page to finish the quiz.</p>
 

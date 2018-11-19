@@ -2,7 +2,12 @@
 
 .quiz {
     margin-bottom: 50px;
-    
+    padding-top: 20px;
+
+    @media screen {
+        padding-top: 50px;
+    }
+
     &__heading {
         margin-bottom: 10px;
 
