@@ -10,6 +10,11 @@ Make sure that you have `NODE_PATH=src/` in the `.env` file. If you don't have t
 ## To start the project run:
 ### `yarn start` 
 
+## ToDO:
+## Implement timer:
+Example of gsap timer in my CodePen:
+https://codepen.io/pojoga84/pen/KrvERK?editors=0011
+
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
