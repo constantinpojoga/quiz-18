@@ -15,11 +15,11 @@ const mapStateToProps = state => ({
 });
     
 class ConnectedResults extends Component {
-
     checkIfFormIsComplete() {
         this.numberOfQuestions = this.props.quizItems.length;
         this.completedItems = this.props.quizItems.filter(el => el.itemResponse).length;
         this.formIsComplete = this.completedItems === this.numberOfQuestions;
+        this.correctAnswers = this.props.quizItems.filter(el => el.itemResponse === el.correct).length;
     }
 
     render() {
@@ -45,7 +45,14 @@ class ConnectedResults extends Component {
                             ))}
 
                             <div className="results__score">
-                                Your total score is {this.correctAnswers} from {this.numberOfQuestions }
+                                Your total score is 
+                                <span className="results__score-span"> {this.correctAnswers} </span>
+                                from <span className="results__score-span"> {this.numberOfQuestions }</span>. 
+                                {this.correctAnswers === this.numberOfQuestions ? ' Perfect score!' : null}
+                                {this.correctAnswers / this.numberOfQuestions < 1 && this.correctAnswers / this.numberOfQuestions >= 0.75? ' Great job!' : null}
+                                {this.correctAnswers / this.numberOfQuestions < 0.8 && this.correctAnswers / this.numberOfQuestions >= 0.6? ' Good job!' : null}
+                                {this.correctAnswers / this.numberOfQuestions < 0.6 && this.correctAnswers / this.numberOfQuestions >= 0.4? ' Not bad!' : null}
+                                {this.correctAnswers / this.numberOfQuestions < 0.4? ' Better luck next time!' : null}
                             </div>
 
                         </div>

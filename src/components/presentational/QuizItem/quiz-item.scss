@@ -94,6 +94,9 @@
         bottom: 50px;
         color: $white;
         line-height: 65px;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.5s forwards;
+
         &:hover {
             background-color: darken($blue, 10%);
         }
@@ -118,5 +121,17 @@
         background-color: rgba(0, 0, 9, 0.5);
         z-index: 10;
         pointer-events: none;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+    
+        100% {
+            opacity: 1;
+        }
     }
 }
