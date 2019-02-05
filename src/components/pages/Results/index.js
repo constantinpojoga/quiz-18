@@ -20,13 +20,13 @@ const Results = () => {
 
 const ConnectedResults = (props) => {
     const [formIsComplete, setFormIsComplete] = useState(false);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
     const numberOfQuestions = props.quizItems.length;
-    let correctAnswers = 0;
 
     // cDM
     useEffect(() => {
         const completedItems = props.quizItems.filter(el => el.itemResponse).length;
-        correctAnswers = props.quizItems.filter(el => el.itemResponse === el.correct).length;
+        setCorrectAnswers(props.quizItems.filter(el => el.itemResponse === el.correct).length);
         
         if (completedItems === numberOfQuestions) {
             setFormIsComplete(true);
