@@ -27,13 +27,8 @@ const ConnectedQuizForm = (props) => {
         const itemResponse = parseInt(element.dataset.answer);
 
         props.setItemResponse(elementId, itemResponse);
-        console.log('Response, ID: ', elementId, 'Response: ', itemResponse )
-        console.log(props.state)
     };
-
-    const handleContinue = () => {
-        props.setActiveItem(props.activeQuizItem + 1);
-    };
+    const handleContinue = () => props.setActiveItem(props.activeQuizItem + 1);
 
     return (
         <QuizItem 

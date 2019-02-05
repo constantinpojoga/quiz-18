@@ -7,8 +7,8 @@ import './quiz.scss';
 
 const Quiz = () => (
     <div className="quiz">
-            <div className="container">
-                <QuizForm />
+        <div className="container">
+            <QuizForm />
         </div>
     </div>
 );

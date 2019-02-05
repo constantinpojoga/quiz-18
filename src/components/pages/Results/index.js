@@ -19,22 +19,18 @@ const Results = () => {
 }
 
 const ConnectedResults = (props) => {
-    const [formIsComplete, setFormIsComplete] = useState(false)
+    const [formIsComplete, setFormIsComplete] = useState(false);
     const numberOfQuestions = props.quizItems.length;
-    let correctAnswers;
+    let correctAnswers = 0;
 
-    const checkIfFormIsComplete = () => {
+    // cDM
+    useEffect(() => {
         const completedItems = props.quizItems.filter(el => el.itemResponse).length;
         correctAnswers = props.quizItems.filter(el => el.itemResponse === el.correct).length;
         
         if (completedItems === numberOfQuestions) {
             setFormIsComplete(true);
         }
-    }
-
-    // cDM
-    useEffect(() => {
-        checkIfFormIsComplete();
     }, []);
 
     // If form is complete, return results
@@ -70,8 +66,7 @@ const ConnectedResults = (props) => {
             </div>
         );
     } 
-
-    // Default action, 
+    // Default action, if form is not completed, show a message and link to the form
     return (
         <div className="container">
             <div className="results">
