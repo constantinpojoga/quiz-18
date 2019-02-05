@@ -6,13 +6,7 @@ import {
     SET_ITEM_RESPONSE,
 } from "store/constants/action-types";
 
-const initialState = {
-    menuIsOpen: false,
-    overlayIsActive: false,
-    activeQuizItem: 0
-};
-
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = {}, action) => {
     if (typeof action === 'undefined')  return state
 
     switch (action.type) {
