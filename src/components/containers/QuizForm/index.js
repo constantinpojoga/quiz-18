@@ -12,7 +12,6 @@ const QuizForm = () => {
 
     return (
         <ConnectedQuizForm 
-        state={state}
             activeQuizItem={ state.activeQuizItem }
             quizItems={ state.quizItems }
             setActiveItem={ val => dispatch(setActiveItem(val)) }
