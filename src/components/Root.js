@@ -1,18 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Provider } from 'react-redux';
-import store from '../redux/store';
+import React, { useReducer } from 'react';
+import rootReducer from 'store/reducers';
 import App from './App.js';
-// import '../global/styles/base.scss';
+import Store, { initialState } from 'store/'
+import '../global/styles/base.scss';
 
-const Root = () => (
-    <Provider store={store}>
-        <App />
-    </Provider>
-)
+const Root = () => {
+    const [state, dispatch] = useReducer(rootReducer, initialState);
 
-Provider.propTypes = {
-    store: PropTypes.object.isRequired
+    return (
+        <Store.Provider value={{state, dispatch}}>
+            <App />
+        </Store.Provider>
+    );
 }
 
 export default Root

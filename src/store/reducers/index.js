@@ -4,7 +4,7 @@ import {
     INIT_QUIZ_ITEMS,
     SET_ACTIVE_ITEM,
     SET_ITEM_RESPONSE,
-} from "../constants/action-types";
+} from "store/constants/action-types";
 
 const initialState = {
     menuIsOpen: false,

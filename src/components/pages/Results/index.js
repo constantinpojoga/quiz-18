@@ -1,85 +1,92 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Components
 import ResultItem from 'components/presentational/ResultItem';
 import { Link } from 'react-router-dom';
+import Store from 'store/';
 // Files
 import './results.scss';
 // Functions
 
-const mapStateToProps = state => ({
-    quizItems: state.quizItems,
-    maxScore: state.maxScore,
-    yourScore: state.yourScore
-});
-    
-class ConnectedResults extends Component {
-    checkIfFormIsComplete() {
-        this.numberOfQuestions = this.props.quizItems.length;
-        this.completedItems = this.props.quizItems.filter(el => el.itemResponse).length;
-        this.formIsComplete = this.completedItems === this.numberOfQuestions;
-        this.correctAnswers = this.props.quizItems.filter(el => el.itemResponse === el.correct).length;
+const Results = () => {
+    const { state } = useContext(Store);
+
+    return (
+        <ConnectedResults 
+            quizItems={ state.quizItems }
+        />
+    );
+}
+
+const ConnectedResults = (props) => {
+    const [formIsComplete, setFormIsComplete] = useState(false)
+    const numberOfQuestions = props.quizItems.length;
+    let correctAnswers;
+
+    const checkIfFormIsComplete = () => {
+        const completedItems = props.quizItems.filter(el => el.itemResponse).length;
+        correctAnswers = props.quizItems.filter(el => el.itemResponse === el.correct).length;
+        
+        if (completedItems === numberOfQuestions) {
+            setFormIsComplete(true);
+        }
     }
 
-    render() {
-        if (this.props.quizItems ) {
-            this.checkIfFormIsComplete();
-            
-            if (this.formIsComplete) {
-                return (
-                    <div className="container">
-                        <div className="results">
-                            <h1 className="results__heading heading-1">Your results for the quiz:</h1>
+    // cDM
+    useEffect(() => {
+        checkIfFormIsComplete();
+    }, []);
 
-                            {this.props.quizItems.map( (item, id) => (
-                                <ResultItem 
-                                    id={item.id} 
-                                    key={id}
-                                    question={item.question}
-                                    answer={item.answers[item.itemResponse - 1]}
-                                    answerIsValid={item.itemResponse === item.correct}
-                                    explanation={item.explanation}
-                                    complexity={item.level}
-                                />
-                            ))}
-
-                            <div className="results__score">
-                                Your total score is 
-                                <span className="results__score-span"> {this.correctAnswers} </span>
-                                from <span className="results__score-span"> {this.numberOfQuestions }</span>. 
-                                {this.correctAnswers === this.numberOfQuestions ? ' Perfect score!' : null}
-                                {this.correctAnswers / this.numberOfQuestions < 1 && this.correctAnswers / this.numberOfQuestions >= 0.75? ' Great job!' : null}
-                                {this.correctAnswers / this.numberOfQuestions < 0.8 && this.correctAnswers / this.numberOfQuestions >= 0.6? ' Good job!' : null}
-                                {this.correctAnswers / this.numberOfQuestions < 0.6 && this.correctAnswers / this.numberOfQuestions >= 0.4? ' Not bad!' : null}
-                                {this.correctAnswers / this.numberOfQuestions < 0.4? ' Better luck next time!' : null}
-                            </div>
-
-                        </div>
-                    </div>
-                )
-            } 
-        } 
-        
-        // Default action
+    // If form is complete, return results
+    if (formIsComplete) {
         return (
             <div className="container">
                 <div className="results">
-                    <h1 className="results__heading heading-1">You need to answer all quiz questions:</h1>
+                    <h1 className="results__heading heading-1">Your results for the quiz:</h1>
 
-                    <p className="results__text">Please follow this <Link to="/quiz">link</Link> or use the menu to go to the quiz page to finish the quiz.</p>
+                    { props.quizItems.map( (item, id) => (
+                        <ResultItem 
+                            id={item.id} 
+                            key={id}
+                            question={item.question}
+                            answer={item.answers[item.itemResponse - 1]}
+                            answerIsValid={item.itemResponse === item.correct}
+                            explanation={item.explanation}
+                            complexity={item.level}
+                        />
+                    )) }
 
+                    <div className="results__score">
+                        Your total score is 
+                        <span className="results__score-span"> { correctAnswers } </span>
+                        from <span className="results__score-span"> { numberOfQuestions }</span>. 
+                        { correctAnswers === numberOfQuestions ? ' Perfect score!' : null}
+                        { correctAnswers / numberOfQuestions < 1 && correctAnswers / numberOfQuestions >= 0.75? ' Great job!' : null}
+                        { correctAnswers / numberOfQuestions < 0.8 && correctAnswers / numberOfQuestions >= 0.6? ' Good job!' : null}
+                        { correctAnswers / numberOfQuestions < 0.6 && correctAnswers / numberOfQuestions >= 0.4? ' Not bad!' : null}
+                        { correctAnswers / numberOfQuestions < 0.4? ' Better luck next time!' : null}
+                    </div>
                 </div>
             </div>
-        )
-    }
-}
+        );
+    } 
 
-const Results = connect(mapStateToProps)(ConnectedResults);
+    // Default action, 
+    return (
+        <div className="container">
+            <div className="results">
+                <h1 className="results__heading heading-1">You need to answer all quiz questions:</h1>
+                <p className="results__text">Please follow this <Link to="/quiz">link</Link> or use the menu to go to the quiz page to finish the quiz.</p>
+            </div>
+        </div>
+    );
+}
 
 Results.propTypes = {
     formIsSubmitted: PropTypes.bool,
-    quizAnswers: PropTypes.array,
+    quizItems: PropTypes.array,
+    maxScore: PropTypes.number,
+    yourScore: PropTypes.number,
 }
 
 export default Results;
